@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container1">
+        <div id="condicion">
+            <h1>Unit Converter</h1>
+            <button id="length">Length</button>
+            <button id="weight">Weight</button>
+            <button id="temperature">Temperature</button>
+        </div>
+        <div id="container">
+            <h4>Result of your calculation</h4>
+            {% if results %}
+                <h1>{{ results }}</h1> 
+            {% else %}
+                <h1>No result yet</h1>
+            {% endif %}
+            <form action="/" method="get"> 
+                <button type="submit">Reset</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

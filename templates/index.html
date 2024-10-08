@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit Converter</title>
+    <link rel="stylesheet" href="../static/style.css"> 
+</head>
+<body>
+    <div class="container1">
+        <div id="condicion">
+            <h1>Unit Converter</h1>
+            <button id="length">Length</button>
+            <button id="weight">Weight</button>
+            <button id="temperature">Temperature</button>
+        </div>
+        <div id="container"></div>
+    </div>
+
+    <script>
+      const container = document.getElementById("container");
+
+      function createOptions(type) {
+        let options = '';
+        if (type === 'length') {
+          options = `
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="miles">Miles</option>
+            <option value="feet">Feet</option>`;
+        } else if (type === 'weight') {
+          options = `
+            <option value="kilograms">Kilograms</option>
+            <option value="grams">Grams</option>
+            <option value="pounds">Pounds</option>
+            <option value="ounces">Ounces</option>`;
+        } else if (type === 'temperature') {
+          options = `
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>`;
+        }
+        return options;
+      }
+
+      function createForm(type) {
+        const options = createOptions(type);
+        let labelText = `Enter the ${type} to convert`;
+
+        let html = `
+          <form id="converter-form" action="/procesar" method="POST">
+            <label for="a">${labelText}</label>
+            <input type="number" id="a" name="a" placeholder="Enter value" required />
+
+            <label for="op1">Unit to convert from</label>
+            <select name="op1" id="op1">${options}</select>
+
+            <label for="op2">Unit to convert to</label>
+            <select name="op2" id="op2">${options}</select>
+
+            <button type="submit">Convert</button>
+          </form>
+        `;
+
+        container.innerHTML = html;
+      }
+
+      document.getElementById("length").addEventListener("click", () => createForm("length"));
+      document.getElementById("weight").addEventListener("click", () => createForm("weight"));
+      document.getElementById("temperature").addEventListener("click", () => createForm("temperature"));
+    </script>
+</body>
+</html>
